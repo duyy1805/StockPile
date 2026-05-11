@@ -8,8 +8,8 @@ export const Input = ({ label, placeholder, value, onChangeText, secureTextEntry
 
   return (
     <View className={`mb-5 ${className}`}>
-      {label && <Text className="text-slate-600 mb-2 font-medium ml-1">{label}</Text>}
-      <View className={`flex-row items-center bg-slate-50 border rounded-2xl px-4 py-1 ${isFocused ? 'border-blue-500 bg-white shadow-sm' : 'border-slate-200'}`}>
+      {label && <Text className="text-slate-600 dark:text-slate-400 mb-2 font-medium ml-1">{label}</Text>}
+      <View className={`flex-row items-center bg-slate-50 dark:bg-slate-800 border rounded-2xl px-4 py-1 ${isFocused ? 'border-blue-500 bg-white dark:bg-slate-900 shadow-sm' : 'border-slate-200 dark:border-slate-700'}`}>
         <TextInput
           placeholder={placeholder}
           value={value}
@@ -17,7 +17,7 @@ export const Input = ({ label, placeholder, value, onChangeText, secureTextEntry
           secureTextEntry={secureTextEntry && !showPassword}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          className="flex-1 py-3 text-slate-800"
+          className="flex-1 py-3 text-slate-800 dark:text-white"
           placeholderTextColor="#94a3b8"
         />
         {secureTextEntry && (
