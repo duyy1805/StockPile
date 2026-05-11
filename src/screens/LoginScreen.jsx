@@ -19,7 +19,7 @@ const LoginScreen = ({ onLoginSuccess }) => {
     setLoading(true);
     const result = await api.login(userName, passWord);
     setLoading(false);
-    
+
     if (result.success) {
       onLoginSuccess(result.data);
     } else {
@@ -28,50 +28,63 @@ const LoginScreen = ({ onLoginSuccess }) => {
   };
 
   return (
-    <View className="flex-1">
+    <View style={{ flex: 1, backgroundColor: '#f8fafc' }}>
       <StatusBar style="light" />
+
+      {/* Deep Blue Background for the top area */}
+      <View className="absolute w-full h-[50%] bg-[#1e3a8a]" />
+
       <LinearGradient
-        colors={['#1e40af', '#3b82f6']}
-        className="absolute w-full h-1/2"
+        colors={['#172554', '#1e40af']}
+        className="absolute w-full h-[50%]"
       />
-      
+
+      {/* Subtle decorative circles */}
+      <View
+        className="absolute w-80 h-80 rounded-full bg-white/5 -top-20 -right-20"
+      />
+      <View
+        className="absolute w-60 h-60 rounded-full bg-blue-400/5 top-20 -left-20"
+      />
+
       <SafeAreaView className="flex-1">
-        <KeyboardAvoidingView 
+        <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           className="flex-1"
         >
-          <ScrollView 
+          <ScrollView
             contentContainerStyle={{ flexGrow: 1 }}
             keyboardShouldPersistTaps="handled"
           >
             {/* Header / Logo */}
-            <View className="items-center justify-center pt-16 pb-12">
-              <View className="w-20 h-20 bg-white/20 rounded-3xl items-center justify-center mb-4 border border-white/30 backdrop-blur-md">
-                <Package size={40} color="white" />
+            <View className="items-center justify-center pt-12 pb-14">
+              <View className="w-20 h-20 bg-white rounded-[24px] items-center justify-center mb-5 shadow-2xl shadow-blue-900/50">
+                <Package size={40} color="#1e40af" />
               </View>
-              <Text className="text-white text-3xl font-bold tracking-tight">Smart Warehouse</Text>
-              <Text className="text-white/70 mt-1">Hệ thống quản lý kho thông minh</Text>
+              <Text className="text-white text-4xl font-black tracking-tight">StockPile</Text>
+              <Text className="text-blue-100/70 mt-1 text-sm font-medium">Hệ thống quản lý kho thông minh</Text>
             </View>
 
             {/* Login Card */}
-            <View className="flex-1 bg-slate-50 rounded-t-[40px] px-8 pt-10 shadow-2xl">
-              <Text className="text-2xl font-bold text-slate-800 mb-2">Đăng nhập</Text>
-              <Text className="text-slate-500 mb-8">Đăng nhập để bắt đầu trải nghiệm hệ thống!</Text>
+            <View className="flex-1 bg-slate-50 rounded-t-[40px] px-8 pt-12 shadow-2xl">
+              <Text className="text-3xl font-black text-slate-900 mb-2">Chào mừng!</Text>
+              <Text className="text-slate-500 mb-10 text-base font-medium">Đăng nhập để bắt đầu công việc</Text>
 
               {error ? (
-                <View className="bg-red-50 border border-red-100 p-3 rounded-xl mb-6">
-                  <Text className="text-red-600 text-center">{error}</Text>
+                <View className="bg-red-50 border border-red-100 p-4 rounded-2xl mb-8 flex-row items-center">
+                  <View className="w-2 h-2 rounded-full bg-red-400 mr-3" />
+                  <Text className="text-red-600 font-medium">{error}</Text>
                 </View>
               ) : null}
 
-              <Input 
+              <Input
                 label="Tên đăng nhập"
                 placeholder="Nhập tên đăng nhập"
                 value={userName}
                 onChangeText={setUserName}
               />
 
-              <Input 
+              <Input
                 label="Mật khẩu"
                 placeholder="Nhập mật khẩu"
                 value={passWord}
@@ -83,8 +96,8 @@ const LoginScreen = ({ onLoginSuccess }) => {
                 <Text className="text-blue-600 font-medium">Quên mật khẩu?</Text>
               </TouchableOpacity>
 
-              <Button 
-                title="Đăng nhập" 
+              <Button
+                title="Đăng nhập"
                 onPress={handleLogin}
                 loading={loading}
               />
